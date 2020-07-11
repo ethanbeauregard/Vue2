@@ -10,17 +10,32 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <div id="root">
-        <input type="text"id="input" v-model="message">
-        <p>Hello there {{ message }}</p>
+        <ul>
+            <li v-for="name in names" v-text="name"></li>
+        </ul>
+        <input type="text" id="input">
+        <button type="submit" id="button">Sumbit</button>
     </div>
 
     <script>
 
-        new Vue({
+        let app = new Vue({
             el: '#root',
             data: {
-                message: 'Hello There'
-            }
+                names: ['Joe', 'Susan', 'Mary']
+            },
+
+             mounted() {
+                alert('Ready');
+             }
+        });
+
+        document.querySelector('#button').addEventListener('click', function() {
+            let name = document.querySelector('#input');
+
+            app.names.push(name.value);
+
+            name.value = '';
         });
         
     </script>
